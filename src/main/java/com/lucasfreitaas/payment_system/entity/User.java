@@ -22,13 +22,13 @@ public class User implements UserDetails {
     private String name;
     private String email;
     private String password;
-    private String veririficationCode;
+    private String verificationCode;
     private boolean enabled;
 
-    public User(Long id, boolean enabled, String veririficationCode, String password, String email, String name) {
+    public User(Long id, boolean enabled, String verificationCode, String password, String email, String name) {
         this.id = id;
         this.enabled = enabled;
-        this.veririficationCode = veririficationCode;
+        this.verificationCode = verificationCode;
         this.password = password;
         this.email = email;
         this.name = name;

@@ -1,14 +1,20 @@
 package com.lucasfreitaas.payment_system.controller;
 
+import com.lucasfreitaas.payment_system.dto.AuthenticationRequest;
+import com.lucasfreitaas.payment_system.dto.AuthenticationResponse;
 import com.lucasfreitaas.payment_system.dto.UserRequest;
 import com.lucasfreitaas.payment_system.dto.UserResponse;
 import com.lucasfreitaas.payment_system.entity.User;
+import com.lucasfreitaas.payment_system.service.TokenService;
 import com.lucasfreitaas.payment_system.service.UserService;
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
@@ -20,8 +26,14 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private TokenService tokenService;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
     @PostMapping
-    @RequestMapping("/user")
+    @RequestMapping("/register")
     public ResponseEntity<UserResponse> registerUser(@RequestBody @Valid UserRequest userRequest) throws MessagingException, UnsupportedEncodingException {
         User user = userRequest.toModel();
         UserResponse userSaved = userService.registerUser(user);
@@ -36,4 +48,10 @@ public class UserController {
             return "verify_fail";
         }
     }
+
+    @GetMapping("/teste")
+    public String teste(){
+        return "esta logado";
+    }
+
 }

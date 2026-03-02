@@ -14,8 +14,11 @@ public record UserRequest(
         String email,
         @NotBlank(message = "A senha não pode ser vazia")
         @Size(message = "A senha deve conter no mínimo 6 caracteres.")
-        String password) {
+        String password,
+        @NotBlank(message = "A senha não pode ser vazia")
+        @Size(message = "A senha deve conter no mínimo 6 caracteres.")
+        String role) {
     public User toModel(){
-        return new User(name, email, password);
+        return new User(name, email, password, role);
     }
 }

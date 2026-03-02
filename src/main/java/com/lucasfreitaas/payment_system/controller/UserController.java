@@ -32,9 +32,9 @@ public class UserController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @PostMapping
-    @RequestMapping("/register")
+    @PostMapping("/register")
     public ResponseEntity<UserResponse> registerUser(@RequestBody @Valid UserRequest userRequest) throws MessagingException, UnsupportedEncodingException {
+        System.out.println("Chegou ao controller");
         User user = userRequest.toModel();
         UserResponse userSaved = userService.registerUser(user);
         return ResponseEntity.ok().body(userSaved);

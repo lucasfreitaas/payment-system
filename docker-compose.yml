@@ -4,7 +4,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: manager
       MYSQL_DATABASE: payments
-      MYSQL_USER: root
+      # - MYSQL_USER: root
       MYSQL_PASSWORD: manager
     ports:
       - "3306:3306"
